@@ -1,5 +1,7 @@
+import 'package:dio/dio.dart';
 import 'package:movie_app_exercise/data/builder/movie_builder.dart';
 import 'package:movie_app_exercise/data/exceptions/api_call_exception.dart';
+import 'package:movie_app_exercise/data/exceptions/invalid_id_exception.dart';
 import 'package:movie_app_exercise/data/models/movie.dart';
 import 'package:movie_app_exercise/data/network_service.dart';
 import 'package:movie_app_exercise/utility/string_util.dart';
@@ -8,7 +10,8 @@ class MovieRepository {
   Future<List<Movie>> fetchAllMovies({int page = 0}) async {
     List<Movie> movies = [];
 
-    Map<String, dynamic> response = await NetworkService().fetchMovies();
+    Map<String, dynamic> response =
+        await NetworkService().fetchMovies(page: page);
 
     // Check if response is null.
     // If not, try to parse it and add to [movies] list.
@@ -38,18 +41,27 @@ class MovieRepository {
   }
 
   Future<Movie> fetchSingleMovie({required String id}) async {
-    Map<String, dynamic>? response = await NetworkService().fetchMovie(id: id);
+    try {
+      Map<String, dynamic>? response =
+          await NetworkService().fetchMovie(id: id);
 
-    // Check if response is null.
-    // If not, try to parse it and then return the value.
-    // else, throw an error
-    if (response != null) {
-      return MovieBuilder().mapNetworkToDart(response);
-    } else {
-      throw ApiCallException(
-          displayMessage:
-              "An Error occurred while fetching movies.\nPlease try again later!");
+      // Check if response is null.
+      // If not, try to parse it and then return the value.
+      // else, throw an error
+      if (response != null) {
+        return MovieBuilder().mapNetworkToDart(response);
+      }
+    } catch (e) {
+      if (e is DioError && e.response?.data?['status_code'] == 34) {
+        throw InvalidIdException(
+            displayMessage: "Requested movie is not found!");
+      }
     }
+
+    // throw error if not found
+    throw ApiCallException(
+        displayMessage:
+            "An Error occurred while fetching movies.\nPlease try again later!");
   }
 
   Future<Movie> saveMovie(Movie movie) async {

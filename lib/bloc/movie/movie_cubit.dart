@@ -25,9 +25,14 @@ class MovieCubit extends Cubit<MovieState> {
 
   Future<void> _fetchMovies({int page = 0}) async {
     try {
-      List<Movie> movies = await MovieRepository().fetchAllMovies();
+      List<Movie> movies = await MovieRepository().fetchAllMovies(page: page);
 
-      emit(SuccessFetchingMoviesState(movies));
+      // Hardcoded to show only up to 2 pages.
+      // Adjust as necessary
+      bool isLastPage = (page == 2) ? true : false;
+
+      emit(SuccessFetchingMoviesState(movies,
+          pageKey: page, isLastPage: isLastPage));
     } on ApiCallException catch (e, stk) {
       debugPrint("ERROR: $e, $stk");
       // Return error message from API
@@ -35,7 +40,7 @@ class MovieCubit extends Cubit<MovieState> {
     } catch (e, stk) {
       debugPrint("ERROR: $e, $stk");
       // Return generic error message
-      emit(FailedFetchingMoviesState(errorMessage: "An Error Occurred!\n$e"));
+      emit(const FailedFetchingMoviesState(errorMessage: "An Error Occurred!"));
     }
   }
 
@@ -52,10 +57,10 @@ class MovieCubit extends Cubit<MovieState> {
     } on InvalidIdException catch (e) {
       // Requested ID Not Found
       emit(MovieDetailsNotFoundState());
-    } catch (e) {
+    } catch (e, stk) {
+      debugPrint("ERROR: $e, $stk");
       // Return generic error message
-      emit(FailedFetchingMovieDetailsState(
-          errorMessage: "An Error Occurred!\n$e"));
+      emit(FailedFetchingMovieDetailsState(errorMessage: "An Error Occurred!"));
     }
   }
 

@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:movie_app_exercise/data/exceptions/invalid_id_exception.dart';
 import 'package:movie_app_exercise/data/secrets.dart';
 import 'package:movie_app_exercise/utility/string_util.dart';
 
@@ -12,8 +13,9 @@ class NetworkService {
         queryParameters: {"api_key": API_KEY}));
   }
 
-  Future<Map<String, dynamic>> fetchMovies(
-      {Map<String, dynamic>? variables}) async {
+  Future<Map<String, dynamic>> fetchMovies({int? page}) async {
+    _dio?.options.queryParameters.addAll({"page": page ?? 1});
+
     // Fetch list of movies (Now Playing list)
     Response<Map<String, dynamic>>? response =
         await _dio?.get("/movie/now_playing");

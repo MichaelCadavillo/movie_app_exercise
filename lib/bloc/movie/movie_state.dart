@@ -14,8 +14,11 @@ class FetchingMoviesState extends MovieState {}
 
 class SuccessFetchingMoviesState extends MovieState {
   final List<Movie> movies;
+  final int? pageKey;
+  final bool? isLastPage;
 
-  const SuccessFetchingMoviesState(this.movies);
+  const SuccessFetchingMoviesState(this.movies,
+      {this.pageKey, this.isLastPage});
 }
 
 // Reload Movies State
