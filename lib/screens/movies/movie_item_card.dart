@@ -23,7 +23,7 @@ class MovieItemCard extends StatelessWidget {
     final Function hp = ScreenUtils(MediaQuery.of(context)).hp;
     final Function wp = ScreenUtils(MediaQuery.of(context)).wp;
     return SizedBox(
-      height: isDeviceTablet ? wp(20) : hp(25),
+      height: isDeviceTablet ? wp(20) : hp(30),
       child: Stack(
         alignment: Alignment.bottomLeft,
         children: [
@@ -33,7 +33,7 @@ class MovieItemCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(15.0),
             ),
             child: Container(
-              height: isDeviceTablet ? wp(17.5) : hp(20),
+              height: isDeviceTablet ? wp(17.5) : hp(22.5),
               width: wp(100),
               margin: EdgeInsets.only(
                 left: isDeviceTablet ? hp(3.5) : wp(5),
