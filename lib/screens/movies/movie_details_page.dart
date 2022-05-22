@@ -138,8 +138,8 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
                                                         onPressed: () {
                                                           Movie updatedMovie =
                                                               movie!.copyWith(
-                                                                  isFavorite: !movie
-                                                                      .isFavorite);
+                                                                  rating: movie
+                                                                      .rating);
                                                           BlocProvider.of<
                                                                       MovieCubit>(
                                                                   context)
@@ -157,15 +157,18 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
                                                         child: Row(
                                                           children: [
                                                             Icon(
-                                                              movie.isFavorite
-                                                                  ? Icons
-                                                                      .favorite
+                                                              movie.rating !=
+                                                                      null
+                                                                  ? Icons.star
                                                                   : Icons
-                                                                      .favorite_border,
-                                                              color: movie
-                                                                      .isFavorite
-                                                                  ? Colors.pink
-                                                                  : Colors.grey,
+                                                                      .star_border,
+                                                              color:
+                                                                  movie.rating !=
+                                                                          null
+                                                                      ? Colors
+                                                                          .yellow
+                                                                      : Colors
+                                                                          .grey,
                                                               size: 25,
                                                             ),
                                                             SizedBox(
@@ -175,14 +178,14 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
                                                                             0.4)
                                                                         : wp(
                                                                             1)),
-                                                            Text(
-                                                              movie.isFavorite
-                                                                  ? "Added to Favorites!"
-                                                                  : "Add to Favorites?",
-                                                              style: const TextStyle(
-                                                                  color: Colors
-                                                                      .black),
-                                                            )
+                                                            if (movie.rating !=
+                                                                null)
+                                                              Text(
+                                                                "${movie.rating}/10",
+                                                                style: const TextStyle(
+                                                                    color: Colors
+                                                                        .black),
+                                                              )
                                                           ],
                                                         )),
                                           ],
@@ -264,7 +267,7 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
     final Function hp = ScreenUtils(MediaQuery.of(context)).hp;
     final Function wp = ScreenUtils(MediaQuery.of(context)).wp;
     return SizedBox(
-      height: isDeviceTablet ? hp(30) : hp(25),
+      height: isDeviceTablet ? hp(30) : hp(30),
       child: Stack(
         fit: StackFit.expand,
         children: [
@@ -280,7 +283,7 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
                 ),
           ClipRRect(
             child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+              filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
               child: Container(
                 alignment: Alignment.center,
               ),

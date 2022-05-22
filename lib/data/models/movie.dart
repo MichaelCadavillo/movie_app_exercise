@@ -4,13 +4,13 @@ class Movie {
   final String? description;
   final String? imagePath;
   final String? backdropPath;
-  final bool isFavorite;
+  final double? rating;
 
   Movie(
       {required this.id,
       this.title,
       this.description,
-      this.isFavorite = false,
+      this.rating,
       this.imagePath,
       this.backdropPath});
 
@@ -19,7 +19,7 @@ class Movie {
           String? title,
           String? description,
           String? imagePath,
-          bool? isFavorite,
+          double? rating,
           String? backdropPath}) =>
       Movie(
           id: id ?? this.id,
@@ -27,5 +27,5 @@ class Movie {
           description: description ?? this.description,
           imagePath: imagePath ?? this.imagePath,
           backdropPath: backdropPath ?? this.backdropPath,
-          isFavorite: isFavorite ?? this.isFavorite);
+          rating: rating ?? this.rating);
 }

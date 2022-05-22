@@ -7,13 +7,13 @@ class MovieItemCard extends StatelessWidget {
   const MovieItemCard(
       {Key? key,
       required this.movie,
-      required this.onFavoriteButtonTap,
+      required this.onRateButtonTap,
       this.isSaving = false,
       this.failedSaving = false})
       : super(key: key);
 
   final Movie movie;
-  final Function onFavoriteButtonTap;
+  final Function onRateButtonTap;
   final bool isSaving;
   final bool failedSaving;
 
@@ -67,15 +67,15 @@ class MovieItemCard extends StatelessWidget {
                               ),
                               InkWell(
                                 onTap: () {
-                                  onFavoriteButtonTap();
+                                  onRateButtonTap();
                                 },
                                 borderRadius: BorderRadius.circular(15),
                                 child: Icon(
-                                  movie.isFavorite
-                                      ? Icons.favorite
-                                      : Icons.favorite_border,
-                                  color: movie.isFavorite
-                                      ? Colors.pink
+                                  movie.rating != null
+                                      ? Icons.star
+                                      : Icons.star_border,
+                                  color: movie.rating != null
+                                      ? Colors.yellow
                                       : Colors.grey,
                                   size: 25,
                                 ),

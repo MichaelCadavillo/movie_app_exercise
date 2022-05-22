@@ -9,7 +9,8 @@ class MovieBuilder extends Builder<Movie> {
         title: map['original_title'],
         description: map['overview'],
         imagePath: map['poster_path'],
-        backdropPath: map['backdrop_path']);
+        backdropPath: map['backdrop_path'],
+        rating: map['vote_average']);
   }
 
   @override
@@ -20,6 +21,7 @@ class MovieBuilder extends Builder<Movie> {
     request['overview'] = movie.description;
     request['poster_path'] = movie.imagePath;
     request['backdrop_path'] = movie.backdropPath;
+    request['vote_average'] = movie.rating;
 
     return request;
   }

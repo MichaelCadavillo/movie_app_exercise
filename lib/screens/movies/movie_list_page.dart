@@ -118,9 +118,9 @@ class _MovieListPageState extends State<MovieListPage> {
                         child: MovieItemCard(
                             key: ValueKey(movieList[index].id),
                             movie: movieList[index],
-                            onFavoriteButtonTap: () {
+                            onRateButtonTap: () {
                               Movie updatedMovie = movieList[index].copyWith(
-                                  isFavorite: !movieList[index].isFavorite);
+                                  rating: movieList[index].rating);
                               BlocProvider.of<MovieCubit>(context)
                                   .saveMovieDetails(movie: updatedMovie);
                             },
@@ -151,9 +151,9 @@ class _MovieListPageState extends State<MovieListPage> {
                 child: MovieItemCard(
                     key: ValueKey(movieList[index].id),
                     movie: movieList[index],
-                    onFavoriteButtonTap: () {
+                    onRateButtonTap: () {
                       Movie updatedMovie = movieList[index]
-                          .copyWith(isFavorite: !movieList[index].isFavorite);
+                          .copyWith(rating: movieList[index].rating);
                       BlocProvider.of<MovieCubit>(context)
                           .saveMovieDetails(movie: updatedMovie);
                     },
