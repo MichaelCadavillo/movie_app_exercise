@@ -1,4 +1,4 @@
-import 'package:movie_app_exercise/data/models/movies.dart';
+import 'package:movie_app_exercise/data/models/movie.dart';
 
 class AppConfig {
   Uri uri;

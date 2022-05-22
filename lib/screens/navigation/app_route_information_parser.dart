@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app_exercise/data/models/movies.dart';
+import 'package:movie_app_exercise/data/models/movie.dart';
 import 'package:movie_app_exercise/screens/navigation/app_config.dart';
 
 class AppRouteInformationParser extends RouteInformationParser<AppConfig> {

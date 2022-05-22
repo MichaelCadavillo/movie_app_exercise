@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app_exercise/bloc/movie/movie_cubit.dart';
 import 'package:movie_app_exercise/bloc/navigation/navigation_cubit.dart';
-import 'package:movie_app_exercise/data/models/movies.dart';
+import 'package:movie_app_exercise/data/models/movie.dart';
 import 'package:movie_app_exercise/screens/common/app_scaffold.dart';
 import 'package:movie_app_exercise/screens/movies/movie_item_card.dart';
 import 'package:movie_app_exercise/screens/navigation/app_config.dart';

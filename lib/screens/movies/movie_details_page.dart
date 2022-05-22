@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app_exercise/bloc/movie/movie_cubit.dart';
 import 'package:movie_app_exercise/bloc/navigation/navigation_cubit.dart';
-import 'package:movie_app_exercise/data/models/movies.dart';
+import 'package:movie_app_exercise/data/models/movie.dart';
 import 'package:movie_app_exercise/screens/common/app_scaffold.dart';
 import 'package:movie_app_exercise/screens/navigation/app_config.dart';
 import 'package:movie_app_exercise/utility/screen_utils.dart';
@@ -86,7 +86,7 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
                   children: [
                     Column(
                       children: [
-                        _blurredImageWidget(movie?.imagePath),
+                        _blurredImageWidget(movie?.backdropPath),
                         Container(
                           margin: EdgeInsets.symmetric(
                             horizontal: isDeviceTablet ? wp(7) : wp(8),
@@ -223,7 +223,7 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
                             ),
                             SizedBox(height: isDeviceTablet ? hp(1) : hp(1.5)),
                             SizedBox(
-                              height: hp(10),
+                              height: hp(70),
                               width: wp(80),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
