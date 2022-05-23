@@ -29,7 +29,7 @@ class MovieCubit extends Cubit<MovieState> {
 
       // Hardcoded to show only up to 2 pages.
       // Adjust as necessary
-      bool isLastPage = (page == 2) ? true : false;
+      bool isLastPage = (page == 5) ? true : false;
 
       emit(SuccessFetchingMoviesState(movies,
           pageKey: page, isLastPage: isLastPage));

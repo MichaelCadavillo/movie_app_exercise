@@ -84,8 +84,6 @@ class _MovieListPageState extends State<MovieListPage> {
                   style: const TextStyle(color: Colors.red, fontSize: 20),
                 ),
               );
-            } else if (state is FetchingMoviesState) {
-              return const Center(child: CircularProgressIndicator());
             } else if (state is ReloadingMoviesState) {
               return const Center(child: CircularProgressIndicator());
             } else if (state is FailedSavingMovieDetailsState) {
@@ -133,34 +131,5 @@ class _MovieListPageState extends State<MovieListPage> {
         ),
       ),
     );
-  }
-
-  ListView listViewBuilder(
-      Function wp, Function hp, bool isSaving, bool failedSaving) {
-    return ListView.builder(
-        itemCount: movieList.length,
-        shrinkWrap: true,
-        itemBuilder: (context, index) {
-          return Container(
-            width: wp(100),
-            margin: EdgeInsets.symmetric(vertical: hp(1), horizontal: wp(2)),
-            child: InkWell(
-                onTap: () {
-                  BlocProvider.of<NavigationCubit>(context)
-                      .navigateTo(AppConfig.movieDetail(movieList[index]));
-                },
-                child: MovieItemCard(
-                    key: ValueKey(movieList[index].id),
-                    movie: movieList[index],
-                    onRateButtonTap: () {
-                      Movie updatedMovie = movieList[index]
-                          .copyWith(rating: movieList[index].rating);
-                      BlocProvider.of<MovieCubit>(context)
-                          .saveMovieDetails(movie: updatedMovie);
-                    },
-                    isSaving: isSaving,
-                    failedSaving: failedSaving)),
-          );
-        });
   }
 }
