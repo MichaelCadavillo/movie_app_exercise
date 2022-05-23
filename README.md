@@ -1,16 +1,13 @@
 # movie_app_exercise
 
-A new Flutter project.
+A simple movie app built using Flutter.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Libraries used
+- flutter_bloc
+  -  Used Cubit as state management for handling business logic code and connects the UI component to the repositories.
+- equatable
+  - Used to compare equality of two objects easily without needing to have lots of boilerplate code. 
+- infinite_scroll_pagination
+  - Used for implementing pagination for the list of Movies that were being fetched from the API.
+- dio
+  - An HTTP client primarily used for connecting the app to movieDB REST API endpoints 
