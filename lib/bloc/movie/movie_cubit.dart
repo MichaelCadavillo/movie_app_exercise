@@ -25,7 +25,7 @@ class MovieCubit extends Cubit<MovieState> {
 
   Future<void> _fetchMovies({int page = 1}) async {
     try {
-      List<Movie> movies = await MovieRepository().fetchAllMovies(page: page);
+      List<Movie> movies = await MovieRepository().fetchAll(page: page);
 
       // Hardcoded to show only up to 2 pages.
       // Adjust as necessary
@@ -48,19 +48,21 @@ class MovieCubit extends Cubit<MovieState> {
     emit(FetchingMovieDetailsState());
 
     try {
-      Movie movie = await MovieRepository().fetchSingleMovie(id: id);
+      Movie movie = await MovieRepository().fetchSingle(id: id);
 
       emit(SuccessFetchingMovieDetailsState(movie));
     } on ApiCallException catch (e) {
       // Return error message from API
       emit(FailedFetchingMovieDetailsState(errorMessage: e.displayMessage));
-    } on InvalidIdException catch (e) {
+    } on InvalidIdException catch (e, stk) {
+      debugPrint("ERROR: $e, $stk");
       // Requested ID Not Found
       emit(MovieDetailsNotFoundState());
     } catch (e, stk) {
       debugPrint("ERROR: $e, $stk");
       // Return generic error message
-      emit(FailedFetchingMovieDetailsState(errorMessage: "An Error Occurred!"));
+      emit(const FailedFetchingMovieDetailsState(
+          errorMessage: "An Error Occurred!"));
     }
   }
 
@@ -68,7 +70,7 @@ class MovieCubit extends Cubit<MovieState> {
     emit(SavingMovieDetailsState(movie));
 
     try {
-      Movie updatedMovie = await MovieRepository().saveMovie(movie);
+      Movie updatedMovie = await MovieRepository().save(movie);
 
       emit(SuccessSavingMovieDetailsState(updatedMovie));
     } on ApiCallException catch (e) {
