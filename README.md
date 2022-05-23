@@ -11,3 +11,7 @@ A simple movie app built using Flutter.
   - Used for implementing pagination for the list of Movies that were being fetched from the API.
 - dio
   - An HTTP client primarily used for connecting the app to movieDB REST API endpoints 
+
+### Running the project
+1. Replace the `apiKey` in `network_service.dart` with your own API key from developers.themoviedb.org
+2. Run the command: `flutter run`
