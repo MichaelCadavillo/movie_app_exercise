@@ -9,7 +9,7 @@ class NetworkService {
   NetworkService() {
     _dio = Dio(BaseOptions(
         baseUrl: "https://api.themoviedb.org/3",
-        queryParameters: {"api_key": API_KEY}));
+        queryParameters: {"api_key": apiKey}));
   }
 
   Future<Map<String, dynamic>> fetchMovies({int? page}) async {
