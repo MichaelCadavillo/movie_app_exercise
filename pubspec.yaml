@@ -27,6 +27,10 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  flutter_bloc: ^8.0.1
+  equatable: ^2.0.3
+  infinite_scroll_pagination: ^3.1.0
+  dio: ^4.0.6
   flutter:
     sdk: flutter
 
