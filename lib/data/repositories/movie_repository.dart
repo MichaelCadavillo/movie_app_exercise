@@ -7,7 +7,7 @@ import 'package:movie_app_exercise/data/network_service.dart';
 import 'package:movie_app_exercise/utility/string_util.dart';
 
 class MovieRepository {
-  Future<List<Movie>> fetchAllMovies({int page = 0}) async {
+  Future<List<Movie>> fetchAllMovies({int page = 1}) async {
     List<Movie> movies = [];
 
     Map<String, dynamic> response =

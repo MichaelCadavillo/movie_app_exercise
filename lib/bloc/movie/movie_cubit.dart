@@ -11,7 +11,7 @@ part 'movie_state.dart';
 class MovieCubit extends Cubit<MovieState> {
   MovieCubit() : super(InitialMovieState());
 
-  Future<void> fetchMovies({int page = 0}) async {
+  Future<void> fetchMovies({int page = 1}) async {
     emit(FetchingMoviesState());
 
     await _fetchMovies(page: page);
@@ -23,7 +23,7 @@ class MovieCubit extends Cubit<MovieState> {
     await _fetchMovies();
   }
 
-  Future<void> _fetchMovies({int page = 0}) async {
+  Future<void> _fetchMovies({int page = 1}) async {
     try {
       List<Movie> movies = await MovieRepository().fetchAllMovies(page: page);
 

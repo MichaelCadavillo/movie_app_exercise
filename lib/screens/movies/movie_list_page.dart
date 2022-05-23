@@ -7,7 +7,6 @@ import 'package:movie_app_exercise/data/models/movie.dart';
 import 'package:movie_app_exercise/screens/common/app_scaffold.dart';
 import 'package:movie_app_exercise/screens/movies/movie_item_card.dart';
 import 'package:movie_app_exercise/screens/navigation/app_config.dart';
-import 'package:movie_app_exercise/utility/screen_utils.dart';
 
 class MovieListPage extends StatefulWidget {
   const MovieListPage({Key? key}) : super(key: key);
@@ -119,10 +118,12 @@ class _MovieListPageState extends State<MovieListPage> {
                             key: ValueKey(movieList[index].id),
                             movie: movieList[index],
                             onRateButtonTap: () {
-                              Movie updatedMovie = movieList[index].copyWith(
-                                  rating: movieList[index].rating);
-                              BlocProvider.of<MovieCubit>(context)
-                                  .saveMovieDetails(movie: updatedMovie);
+                              // TODO: Implement rate movie functionality
+
+                              // Movie updatedMovie = movieList[index].copyWith(
+                              //     rating: movieList[index].rating);
+                              // BlocProvider.of<MovieCubit>(context)
+                              //     .saveMovieDetails(movie: updatedMovie);
                             },
                             isSaving: isSaving,
                             failedSaving: failedSaving),

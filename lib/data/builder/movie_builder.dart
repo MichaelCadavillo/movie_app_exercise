@@ -10,7 +10,7 @@ class MovieBuilder extends Builder<Movie> {
         description: map['overview'],
         imagePath: map['poster_path'],
         backdropPath: map['backdrop_path'],
-        rating: map['vote_average']);
+        rating: double.tryParse('${map['vote_average']}') ?? 0.0);
   }
 
   @override

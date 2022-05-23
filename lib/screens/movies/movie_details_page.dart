@@ -136,16 +136,18 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
                                                             CircularProgressIndicator())
                                                     : TextButton(
                                                         onPressed: () {
-                                                          Movie updatedMovie =
-                                                              movie!.copyWith(
-                                                                  rating: movie
-                                                                      .rating);
-                                                          BlocProvider.of<
-                                                                      MovieCubit>(
-                                                                  context)
-                                                              .saveMovieDetails(
-                                                                  movie:
-                                                                      updatedMovie);
+                                                          // TODO: Implement rate movie functionality
+
+                                                          // Movie updatedMovie =
+                                                          //     movie!.copyWith(
+                                                          //         rating: movie
+                                                          //             .rating);
+                                                          // BlocProvider.of<
+                                                          //             MovieCubit>(
+                                                          //         context)
+                                                          //     .saveMovieDetails(
+                                                          //         movie:
+                                                          //             updatedMovie);
                                                         },
                                                         style: TextButton
                                                             .styleFrom(

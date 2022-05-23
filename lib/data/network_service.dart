@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:movie_app_exercise/data/exceptions/invalid_id_exception.dart';
 import 'package:movie_app_exercise/data/secrets.dart';
 import 'package:movie_app_exercise/utility/string_util.dart';
 
