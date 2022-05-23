@@ -4,10 +4,12 @@ import 'package:movie_app_exercise/data/exceptions/api_call_exception.dart';
 import 'package:movie_app_exercise/data/exceptions/invalid_id_exception.dart';
 import 'package:movie_app_exercise/data/models/movie.dart';
 import 'package:movie_app_exercise/data/network_service.dart';
+import 'package:movie_app_exercise/data/repositories/base_repository.dart';
 import 'package:movie_app_exercise/utility/string_util.dart';
 
-class MovieRepository {
-  Future<List<Movie>> fetchAllMovies({int page = 1}) async {
+class MovieRepository implements Repository<Movie> {
+  @override
+  Future<List<Movie>> fetchAll({int? page}) async {
     List<Movie> movies = [];
 
     Map<String, dynamic> response =
@@ -40,7 +42,8 @@ class MovieRepository {
     return movies;
   }
 
-  Future<Movie> fetchSingleMovie({required String id}) async {
+  @override
+  Future<Movie> fetchSingle({required String id}) async {
     try {
       Map<String, dynamic>? response =
           await NetworkService().fetchMovie(id: id);
@@ -64,7 +67,8 @@ class MovieRepository {
             "An Error occurred while fetching movies.\nPlease try again later!");
   }
 
-  Future<Movie> saveMovie(Movie movie) async {
+  @override
+  Future<Movie> save(Movie movie) async {
     Map<String, dynamic>? response = await NetworkService()
         .saveMovie(variables: MovieBuilder().mapToNetwork(movie));
 
